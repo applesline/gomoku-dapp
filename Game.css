@@ -1,0 +1,79 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.winner {
+  color: rgb(0, 255, 98);
+  margin-bottom: 1em;
+}
+
+.board {
+  position: relative;
+  border: 10px solid #ccc; 
+  background-color: #f5f5f5; 
+}
+.board::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background-color: #EFEFEF;
+  z-index: -1;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 0.3px solid #cab1b1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell.black {
+  background-color: #000;
+  border: 1px solid #b6a3a3;
+  border-radius: 50%; 
+}
+
+.cell.white {
+  background-color: #fff;
+  border: 1px solid #b6a3a3;
+  border-radius: 50%; 
+}
+
+
+.text-center {
+    text-align: center;
+  }
+
+  .cartoon-button {
+    background-color: #ffcc00;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+  }
+  
+  .cartoon-button:hover {
+    transform: scale(1.1);
+  }
