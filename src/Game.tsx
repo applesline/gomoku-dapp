@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState } from 'react';
 import Confetti from 'react-confetti';
 import domtoimage from 'dom-to-image';
 import { TransactionBlock } from '@mysten/sui.js/transactions';
@@ -94,16 +94,6 @@ function alphaBetaPruning(board, player, depth, alpha, beta, maximizingPlayer) {
 	}
   }
 
-  function checkDraw(board) {
-	for (let i = 0; i < SIZE; i++) {
-	  for (let j = 0; j < SIZE; j++) {
-		if (!board[i][j]) {
-		  return false;
-		}
-	  }
-	}
-	return true;
-  }
   
   function evaluate(board) {
 	// 在这里实现一个评估函数来评估当前局势的价值
@@ -177,7 +167,7 @@ export function Game() {
   const txb = new TransactionBlock();
   const {mutate: signAndExecuteTransactionBlock} = useSignAndExecuteTransactionBlock();
 
-  const [currentPlayer, setCurrentPlayer] = useState(1);
+//   const [ setCurrentPlayer] = useState(1);
   const [winner, setWinner] = useState(null);
 
 
@@ -239,13 +229,14 @@ export function Game() {
 			},
 			{onSuccess: (result) => {
 					console.log('executed transaction block', result);
-					setDigest(result.digest);
+					// setDigest(result.digest);
 				},
 			},
 		);
 		// console.log(result);
 	  })
 	  .catch(function (error) {
+		console.log(error)
 		// Handle any errors that occurred during the screenshot process
 	  });
   }
@@ -253,7 +244,7 @@ export function Game() {
   function replay() {
 	setBoard(initializeBoard())
 	setWinner(null);
-	setCurrentPlayer(1);
+	// setCurrentPlayer(1);
   }
   
   
