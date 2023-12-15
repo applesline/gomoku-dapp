@@ -1,6 +1,5 @@
 import { useCurrentAccount } from "@mysten/dapp-kit";
-import { Container, Flex, Heading, Text } from "@radix-ui/themes";
-import { OwnedObjects } from "./OwnedObjects";
+import { Container, Flex, Text } from "@radix-ui/themes";
 import {Game} from "./Game";
 import './Game.css'; 
 
