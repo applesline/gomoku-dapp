@@ -96,9 +96,7 @@ function alphaBetaPruning(board, player, depth, alpha, beta, maximizingPlayer) {
 
   
   function evaluate(board) {
-	// 在这里实现一个评估函数来评估当前局势的价值
-	// 你可以考虑棋盘上的棋子分布、连子的数量、以及其他有利因素来评估局势的价值
-	// 以下是一个简单的评估函数示例，仅供参考
+	// 考虑棋盘上的棋子分布、连子的数量、以及其他有利因素来评估局势的价值
 	// console.log('--->1')
 	let score = 0;
 	// 横向
@@ -142,9 +140,7 @@ function alphaBetaPruning(board, player, depth, alpha, beta, maximizingPlayer) {
   }
   
   function evaluateLine(line) {
-	// 在这里实现一个评估单行的函数
-	// 你可以根据棋子的分布、连子的数量等因素来评估单行的价值
-	// 以下是一个简单的评估单行的函数示例，仅供参考
+	// 根据棋子的分布、连子的数量等因素来评估单行的价值
 	let blackCount = line.filter(cell => cell === 1).length;
 	let whiteCount = line.filter(cell => cell === -1).length;
 	if (blackCount === 5) {
