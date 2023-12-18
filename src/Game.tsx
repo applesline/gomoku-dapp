@@ -6,6 +6,8 @@ import { useCurrentAccount,useSignAndExecuteTransactionBlock } from "@mysten/dap
 import './Game.css'; // 引入CSS样式文件
 
 const SIZE = 10;
+const PACKAGE_ID = "0xd5bd33ec21966bdbf03388ac89021fe3482c4e6f14d87b22facb4dcd20d09f1b";
+const OWNER = "0x30333f308f2d1154499b7406242fbd2ca4b560454671dbd2777867dcc0d76a34";
 
 
 // 初始化棋盘
@@ -195,45 +197,14 @@ export function Game() {
   
 
   function captureScreenshot() {
-
-	const element = document.getElementById('capture'); // Replace 'capture' with the ID of the element you want to capture
-	// const options = {
-	// 	width: element.offsetWidth, // 设置截图的宽度
-	// 	height: element.offsetHeight, // 设置截图的高度
-	// 	style: {
-	// 	  transform: 'scale(1)', // 缩小截图的尺寸
-	// 	},
-	//   };
-	// domtoimage.toPng(element,options)
+	const element = document.getElementById('capture'); 
 	domtoimage.toPng(element)
 	  .then(function (dataUrl) {
-		// console.log(dataUrl)
 		console.log(account?.address)
-		
-		txb.moveCall({
-			target:"0x416c539ffefe29d28db6178c0701db83c146c4ed610624a8ec873057aaa7c127::mynft::mint",
-			arguments: [txb.pure.string("You win the game"),
-						txb.pure.string(dataUrl)]
-		});
-		const [coin] = txb.splitCoins(txb.gas, [10000000]);
-		txb.transferObjects([coin], '0x30333f308f2d1154499b7406242fbd2ca4b560454671dbd2777867dcc0d76a34');
-		console.log(dataUrl)
-		signAndExecuteTransactionBlock(
-			{
-				transactionBlock: txb,
-				chain: 'https://fullnode.testnet.sui.io:443'
-			},
-			{onSuccess: (result) => {
-					console.log('executed transaction block', result);
-					// setDigest(result.digest);
-				},
-			},
-		);
-		// console.log(result);
+		sendTxbOnSui(dataUrl)
 	  })
 	  .catch(function (error) {
 		console.log(error)
-		// Handle any errors that occurred during the screenshot process
 	  });
   }
 
@@ -243,7 +214,25 @@ export function Game() {
 	// setCurrentPlayer(1);
   }
   
-  
+  function sendTxbOnSui(dataUrl) {
+	txb.moveCall({
+		target:PACKAGE_ID + "::gomoku::mint",
+		arguments: [txb.pure.string("You win the game"),
+			txb.pure.string(dataUrl)]
+		});
+	const [coin] = txb.splitCoins(txb.gas, [1000000]);
+	txb.transferObjects([coin], OWNER);
+	console.log(dataUrl)
+	signAndExecuteTransactionBlock(
+		{
+		transactionBlock: txb
+		},
+		{onSuccess: (result) => {
+			console.log('executed transaction block', result);
+			},
+		},
+	);
+  }
   
   return (
 	<div className="game">
