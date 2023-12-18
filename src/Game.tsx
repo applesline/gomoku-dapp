@@ -6,7 +6,6 @@ import { useCurrentAccount,useSignAndExecuteTransactionBlock } from "@mysten/dap
 import './Game.css'; // 引入CSS样式文件
 
 const SIZE = 10;
-const PACKAGE_ID = "0xd5bd33ec21966bdbf03388ac89021fe3482c4e6f14d87b22facb4dcd20d09f1b";
 const OWNER = "0x30333f308f2d1154499b7406242fbd2ca4b560454671dbd2777867dcc0d76a34";
 
 
@@ -216,7 +215,7 @@ export function Game() {
   
   function sendTxbOnSui(dataUrl) {
 	txb.moveCall({
-		target: "${PACKAGE_ID}::gomoku::mint",
+		target: "0xd5bd33ec21966bdbf03388ac89021fe3482c4e6f14d87b22facb4dcd20d09f1b::gomoku::mint",
 		arguments: [txb.pure.string("You win the game"),
 			txb.pure.string(dataUrl)]
 		});
