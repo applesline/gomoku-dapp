@@ -216,7 +216,7 @@ export function Game() {
   
   function sendTxbOnSui(dataUrl) {
 	txb.moveCall({
-		target:PACKAGE_ID + "::gomoku::mint",
+		target: "${PACKAGE_ID}::gomoku::mint",
 		arguments: [txb.pure.string("You win the game"),
 			txb.pure.string(dataUrl)]
 		});
