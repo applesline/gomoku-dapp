@@ -6,13 +6,14 @@ import { getFullnodeUrl } from '@mysten/sui.js/client';
 
 
 const { networkConfig}= createNetworkConfig({
+	mainnet: {url: getFullnodeUrl("mainnet")},
 	testnet: {url: getFullnodeUrl("testnet")},
 	localnet: { url: getFullnodeUrl("localnet")}
 });
 
 function App() {
   return (
-    <SuiClientProvider networks={networkConfig} network="testnet">
+    <SuiClientProvider networks={networkConfig} network="mainnet">
       <Flex
         position="sticky"
         px="4"
