@@ -1,0 +1,11 @@
+[package]
+name = "gomoku"
+version = "0.0.1"
+
+[dependencies]
+#Sui = { local = "/Users/aplesline/coding/sui-main/crates/sui-framework/packages/sui-framework"}
+Sui = { git = "https://github.com/MystenLabs/sui", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/mainnet" }
+
+
+[addresses]
+gomoku = "0x0"
