@@ -197,7 +197,14 @@ export function Game() {
 
   function captureScreenshot() {
 	const element = document.getElementById('capture'); 
-	domtoimage.toPng(element)
+	const options = {
+	 	width: element.offsetWidth, // 设置截图的宽度
+	 	height: element.offsetHeight, // 设置截图的高度
+	 	style: {
+	 	  transform: 'scale(0.5)', // 缩小截图的尺寸
+	 	},
+	   };
+	domtoimage.toPng(element,options)
 	  .then(function (dataUrl) {
 		console.log(account?.address)
 		sendTxbOnSui(dataUrl)
